@@ -1,0 +1,22 @@
+[localhost:vars]
+
+#
+# Source
+#
+# Exmaple:
+# container_source=registry.redhat.io
+# src_creds="username:password"
+container_source=registry.redhat.io
+src_creds=""
+
+#
+# Destination
+#
+# Exmaple:
+# container_dest=quay.pichuang.local
+# dest_creds="username:password"
+container_dest=
+dest_creds=
+
+[localhost]
+bastion.pichuang.local ansible_host=127.0.0.1

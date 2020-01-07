@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+    dockerhub:
+        - library/centos:7
+        - library/debian:8
+        - library/ubuntu:18.04
+        - library/alpine:3.9
+        - library/nginx:1.15
+
+  tasks:
+    - name: Mirror dockerhub images from docker.io to {{ container_dest }}
+      command: "skopeo copy --dest-creds {{ dest_creds }} --dest-cert-dir /etc/pki/ca-trust/source/anchors/ docker://docker.io/{{ item }} docker://{{ container_dest }}/{{ item }}"
+      with_items:
+        - "{{ dockerhub }}"

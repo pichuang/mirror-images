@@ -1,0 +1,131 @@
+- hosts: localhost
+  become: true
+  vars:
+    version: v3.11.51
+    infra_component_images:
+        - openshift3/apb-base:{{ version }}
+        - openshift3/apb-tools:{{ version }}
+        - openshift3/automation-broker-apb:{{ version }}
+        - openshift3/csi-attacher:{{ version }}
+        - openshift3/csi-driver-registrar:{{ version }}
+        - openshift3/csi-livenessprobe:{{ version }}
+        - openshift3/csi-provisioner:{{ version }}
+        - openshift3/grafana:{{ version }}
+        - openshift3/image-inspector:{{ version }}
+        - openshift3/mariadb-apb:{{ version }}
+        - openshift3/mediawiki:{{ version }}
+        - openshift3/mediawiki-apb:{{ version }}
+        - openshift3/mysql-apb:{{ version }}
+        - openshift3/ose-ansible:{{ version }}
+        - openshift3/ose-ansible-service-broker:{{ version }}
+        - openshift3/ose-cli:{{ version }}
+        - openshift3/ose-cluster-autoscaler:{{ version }}
+        - openshift3/ose-cluster-capacity:{{ version }}
+        - openshift3/ose-cluster-monitoring-operator:{{ version }}
+        - openshift3/ose-console:{{ version }}
+        - openshift3/ose-configmap-reloader:{{ version }}
+        - openshift3/ose-control-plane:{{ version }}
+        - openshift3/ose-deployer:{{ version }}
+        - openshift3/ose-descheduler:{{ version }}
+        - openshift3/ose-docker-builder:{{ version }}
+        - openshift3/ose-docker-registry:{{ version }}
+        - openshift3/ose-efs-provisioner:{{ version }}
+        - openshift3/ose-egress-dns-proxy:{{ version }}
+        - openshift3/ose-egress-http-proxy:{{ version }}
+        - openshift3/ose-egress-router:{{ version }}
+        - openshift3/ose-haproxy-router:{{ version }}
+        - openshift3/ose-hyperkube:{{ version }}
+        - openshift3/ose-hypershift:{{ version }}
+        - openshift3/ose-keepalived-ipfailover:{{ version }}
+        - openshift3/ose-kube-rbac-proxy:{{ version }}
+        - openshift3/ose-kube-state-metrics:{{ version }}
+        - openshift3/ose-metrics-server:{{ version }}
+        - openshift3/ose-node:{{ version }}
+        - openshift3/ose-node-problem-detector:{{ version }}
+        - openshift3/ose-operator-lifecycle-manager:{{ version }}
+        - openshift3/ose-pod:{{ version }}
+        - openshift3/ose-prometheus-config-reloader:{{ version }}
+        - openshift3/ose-prometheus-operator:{{ version }}
+        - openshift3/ose-recycler:{{ version }}
+        - openshift3/ose-service-catalog:{{ version }}
+        - openshift3/ose-template-service-broker:{{ version }}
+        - openshift3/ose-web-console:{{ version }}
+        - openshift3/postgresql-apb:{{ version }}
+        - openshift3/registry-console:{{ version }}
+        - openshift3/snapshot-controller:{{ version }}
+        - openshift3/snapshot-provisioner:{{ version }}
+        - openshift3/ose:latest
+        - rhel7/etcd:3.2.22
+    infra_optional_component_images:
+        - openshift3/metrics-cassandra:{{ version }}
+        - openshift3/metrics-hawkular-metrics:{{ version }}
+        - openshift3/metrics-hawkular-openshift-agent:{{ version }}
+        - openshift3/metrics-heapster:{{ version }}
+        - openshift3/oauth-proxy:{{ version }}
+        - openshift3/ose-logging-curator5:{{ version }}
+        - openshift3/ose-logging-elasticsearch5:{{ version }}
+        - openshift3/ose-logging-eventrouter:{{ version }}
+        - openshift3/ose-logging-fluentd:{{ version }}
+        - openshift3/ose-logging-kibana5:{{ version }}
+        - openshift3/ose-metrics-schema-installer:{{ version }}
+        - openshift3/prometheus:{{ version }}
+        - openshift3/prometheus-alert-buffer:{{ version }}
+        - openshift3/prometheus-alertmanager:{{ version }}
+        - openshift3/prometheus-node-exporter:{{ version }}
+        - cloudforms46/cfme-openshift-postgresql
+        - cloudforms46/cfme-openshift-memcached
+        - cloudforms46/cfme-openshift-app-ui
+        - cloudforms46/cfme-openshift-app
+        - cloudforms46/cfme-openshift-embedded-ansible
+        - cloudforms46/cfme-openshift-httpd
+        - cloudforms46/cfme-httpd-configmap-generator
+        - rhgs3/rhgs-server-rhel7
+        - rhgs3/rhgs-volmanager-rhel7
+        - rhgs3/rhgs-gluster-block-prov-rhel7
+        - rhgs3/rhgs-s3-server-rhel7
+    s2i_images:
+        - jboss-amq-6/amq63-openshift:1.4-13
+        - jboss-datagrid-7/datagrid72-openshift:1.3-3
+        #- jboss-datagrid-7/datagrid71-client-openshift:???
+        - jboss-datavirt-6/datavirt64-openshift:1.3-1
+        - jboss-datavirt-6/datavirt64-driver-openshift:1.3-1
+        - jboss-decisionserver-6/decisionserver64-openshift:1.3-13
+        - jboss-processserver-6/processserver64-openshift:1.3-11
+        - jboss-eap-6/eap64-openshift:1.8-21
+        - jboss-eap-7/eap71-openshift:1.3-15
+        - jboss-webserver-3/webserver31-tomcat7-openshift:1.3-9
+        - jboss-webserver-3/webserver31-tomcat8-openshift:1.3-9
+        - openshift3/jenkins-2-rhel7:{{ version }}
+        - openshift3/jenkins-agent-maven-35-rhel7:{{ version }}
+        - openshift3/jenkins-agent-nodejs-8-rhel7:{{ version }}
+        - openshift3/jenkins-slave-base-rhel7:{{ version }}
+        - openshift3/jenkins-slave-maven-rhel7:{{ version }}
+        - openshift3/jenkins-slave-nodejs-rhel7:{{ version }}
+        - rhscl/mongodb-32-rhel7:3.2-28
+        - rhscl/mysql-57-rhel7:5.7-25
+        - rhscl/perl-524-rhel7:5.24-27
+        - rhscl/php-71-rhel7:1-30
+        - rhscl/postgresql-95-rhel7:9.5-30
+        - rhscl/python-35-rhel7:3.5-40
+        - redhat-sso-7/sso72-openshift:1.3-7
+        - rhscl/ruby-24-rhel7:2.4-23
+        - redhat-openjdk-18/openjdk18-openshift:1.5-14
+        - redhat-sso-7/sso72-openshift:1.3-7
+        - rhscl/nodejs-6-rhel7:6-36
+        - rhscl/mariadb-101-rhel7:10.1-27
+    optional:
+        - rhel7/rhel-tools:7.6-6
+  tasks:
+    - name: Mirror OpenShift {{ version }} images from {{ container_source }} to {{ container_dest }}
+      command: "skopeo copy --src-creds {{ src_creds }} --dest-creds {{ dest_creds }} --dest-cert-dir /etc/pki/ca-trust/source/anchors/ docker://{{ container_source }}/{{ item }} docker://{{ container_dest }}/{{ item }}"
+      with_items:
+        - "{{ infra_component_images }}"
+        - "{{ infra_optional_component_images }}"
+        - "{{ s2i_images }}"
+        - "{{ optional }}"
+
+    - name: Hotfix - Copy openshift3/ose-metrics-schema-installer to openshift3/metrics-schema-installer
+      command: "skopeo copy --src-creds {{ dest_creds }} --dest-creds {{ dest_creds }} --dest-cert-dir /etc/pki/ca-trust/source/anchors/ docker://{{ container_dest }}/openshift3/ose-metrics-schema-installer:v3.11.51 docker://{{ container_dest }}/openshift3/metrics-schema-installer:v3.11.51"
+
+
+
